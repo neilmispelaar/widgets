@@ -5,11 +5,35 @@
 // category: [{ id, quantity }]
 //
 const state = {
-
+  streetfood: [
+    {
+      name: 'Hello'
+    },
+    {
+      name: 'John'
+    },
+    {
+      name: 'Joe'
+    },
+    {
+      name: 'Jerry'
+    }
+  ],
+  loaded: false,
 }
 
 // getters
 const getters = {
+
+  // Get loaded state
+  getLoadedState (state) {
+    return state.loaded;
+  },
+
+  // Get all Streetfood - no sorting applied
+  getStreetFood (state) {
+    return state.streetfood;
+  },
 
 }
 
