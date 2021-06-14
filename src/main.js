@@ -1,7 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import { store } from './store/index';
 
 // Add tailwindcss
 import './assets/styles/main.css';
 
-createApp(App).mount('#app')
+// Create the app
+let app = createApp(App);
+
+// Setup Vue to use the Vuex store
+app.use(store);
+
+// Mount the app
+app.mount('#app')
