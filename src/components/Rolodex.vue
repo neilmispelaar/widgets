@@ -29,6 +29,7 @@
 <script>
 import RolodexList from './RolodexList.vue';
 import RolodexSelectedItem from './RolodexSelectedItem.vue';
+import { useStore } from 'vuex';
 
 export default {
   components: {
@@ -36,6 +37,12 @@ export default {
     RolodexSelectedItem
   },
   setup() {
+
+    // Use the store
+    const store = useStore();
+
+    // Initialise the categories
+    store.dispatch('rolodex/initialiseRolodex');
 
   },
 }

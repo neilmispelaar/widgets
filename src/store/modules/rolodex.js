@@ -1,3 +1,5 @@
+import PeopleService from '../../services/people/people';
+
 // Local Storage Flag
 // The flag is set to true when the user is above 19
 
@@ -5,48 +7,7 @@
 // category: [{ id, quantity }]
 //
 const state = {
-  people: [
-    {
-      id: 1,
-      name: {
-        first: 'Micheal',
-        middle: '',
-        last: 'Jackson',
-      }
-    },
-    {
-      id: 2,
-      name: {
-        first: 'John',
-        middle: 'Bon',
-        last: 'Jovi',
-      }
-    },
-    {
-      id: 3,
-      name: {
-        first: 'Joe',
-        middle: '',
-        last: 'Vindaloo',
-      }
-    },
-    {
-      id: 4,
-      name: {
-        first: 'Mark',
-        middle: '',
-        last: 'Lebowski',
-      }
-    },
-    {
-      id: 5,
-      name: {
-        first: 'Brenda',
-        middle: '',
-        last: 'Mulvani',
-      }
-    }
-  ],
+  people: [],
   loaded: false,
   selectedPersonId: null,
 }
@@ -64,8 +25,6 @@ const getters = {
     return state.people;
   },
 
-
-
   // Get all People - no sorting applied
   getPersonById: (state, getters) => (id) => {
 
@@ -78,7 +37,6 @@ const getters = {
     // return null
     return person || null;
   },
-
 
   getSelectedPerson(state, getters) {
 
@@ -104,6 +62,30 @@ const getters = {
 // actions
 const actions = {
 
+  // Run this at the start of the app to initialise
+  // the categories
+  initialiseRolodex ({ commit, dispatch }) {
+
+    dispatch('fetchPeople');
+
+  },
+
+  // Fetch and load the categories
+  fetchPeople ({ commit, state, getters }) {
+
+     // Get all of the Product Categories from the API
+     PeopleService
+     .getAll()
+     .then((people) => {
+
+      commit('setPeople', people);
+
+      commit('setLoadedState', true);
+
+     });
+
+  },
+
   // Set the Selected Item
   SelectPerson ({ commit, state, getters },  person ) {
 
@@ -118,12 +100,21 @@ const actions = {
 // mutations
 const mutations = {
 
+  setPeople (state, people) {
+    // Check to see if the incoming people are undefined
+    if (people)
+      state.people = people;
+  },
+
   setSelectedItem (state,  id ) {
     // Check to see if it's not undefined
     if (id)
       state.selectedPersonId = id;
   },
 
+  setLoadedState (state,  flag ) {
+    state.loaded = flag;
+  },
 
 }
 
