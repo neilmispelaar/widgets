@@ -1,25 +1,49 @@
 <template>
-  <img class="mx-auto" alt="Vue logo" src="./assets/logo.png" />
 
-  <!-- Container -->
-  <div class="container">
+  <header>
 
-    <main>
+    <div class="bg-green-100">
 
-      <street-food />
+      <div class="max-w-screen-md mx-auto p-5">
 
-    </main>
+        <div class="flex flex-row justify-start align-middle">
 
-  </div>
+          <img class="self-center h-10" alt="Vue logo" src="./assets/logo.png" />
+
+          <h2 class="self-center py-5 ml-2 text-lg font-semibold">Vue-dex</h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <!-- Fluid background colour -->
+    <div class="bg-blue-500">
+
+      <!-- Container -->
+      <div class="max-w-screen-md mx-auto p-5">
+
+        <rolodex />
+
+      </div>
+
+    </div>
+
+  </main>
 
 </template>
 
 <script>
-import StreetFood from "./components/StreetFood.vue";
+import Rolodex from "./components/Rolodex.vue";
 
 export default {
   components: {
-    StreetFood,
+    Rolodex,
   },
   setup() {
 

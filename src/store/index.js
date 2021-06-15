@@ -1,11 +1,11 @@
 import { createStore, createLogger } from 'vuex'
-import streetfood from './modules/streetfood'
+import rolodex from './modules/rolodex'
 
 const debug = process.env.NODE_ENV !== 'production'
 
 export const store = createStore({
   modules: {
-    streetfood,
+    rolodex,
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []

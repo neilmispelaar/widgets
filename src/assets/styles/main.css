@@ -3,18 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@layer components {
-
-
-
-}
-
-
 @layer base {
 
-  .body {
-    @apply antialiased
+  body {
+    @apply antialiased bg-blue-500 min-h-screen;
   }
 
 }
