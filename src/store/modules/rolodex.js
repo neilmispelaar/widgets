@@ -1,3 +1,4 @@
+import axios from 'axios';
 import PeopleService from '../../services/people/people';
 
 // Local Storage Flag
@@ -68,6 +69,20 @@ const actions = {
 
     dispatch('fetchPeople');
 
+    dispatch('registerNewPersonHandler');
+
+  },
+
+  // Register the callback that runs when the service adds a new person
+  registerNewPersonHandler ({ commit }) {
+
+    PeopleService
+    .registerNewPersonHandler((person) => {
+      // Commit the new person to the vuex state
+      console.log('Received Person Handler', person);
+      commit('addPerson', person);
+    });
+
   },
 
   // Fetch and load the categories
@@ -99,6 +114,12 @@ const actions = {
 
 // mutations
 const mutations = {
+
+  addPerson (state, person) {
+    // Check to see if the incoming person is undefined and then push onto the array
+    if (person)
+      state.people.push(person);
+  },
 
   setPeople (state, people) {
     // Check to see if the incoming people are undefined

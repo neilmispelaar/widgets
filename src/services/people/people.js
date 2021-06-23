@@ -1,5 +1,28 @@
 import request from './api';
 
+// Callbacks that are run
+var receivePersonCallbacks = [];
+
+// Simulate an event fired
+setTimeout(function(){
+
+  receivePersonCallbacks.forEach(function(callback){
+    // Run the function callback
+    // Pass in the new person data
+    callback(
+      {
+      "id": 6,
+      "name": {
+        "first": "Kate",
+        "middle": "Elizabeth",
+        "last": "Grantham"
+      }
+    });
+  });
+
+}, 5000);
+
+// Return all of the people
 function getAll() {
   return request({
     url: '/data/people.json',
@@ -33,8 +56,15 @@ function getAll() {
 
 }
 
+// Register a new callback to run when a person is added
+function registerNewPersonHandler(callback) {
+  // Add the callback to the local array
+  receivePersonCallbacks.push(callback);
+}
+
 const PeopleService = {
   getAll, //, update, delete, etc. ...
+  registerNewPersonHandler,
 }
 
 export default PeopleService;
